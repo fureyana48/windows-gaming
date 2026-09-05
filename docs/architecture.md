@@ -1,59 +1,20 @@
-# Core Gaming Architecture
+# Architecture
 
-## Layer model
+## Overview
 
-```text
-Hardware
-   |
-Windows OS
-   |
-Core Gaming v1.0
-   |
-+-----------------------------+
-| Game runtime / launchers    |
-| Game installation           |
-| Game-specific configuration |
-| Benchmarking                |
-| Gameplay                    |
-+-----------------------------+
-```
+Describe the system as layers and components. Keep the architecture focused on responsibilities and boundaries rather than transient implementation details.
 
-Core Gaming is a stable configuration layer between Windows and the gaming workload layer.
+## Layers
 
-## Standard controls
+1. **Hardware / Platform** — physical host or target platform.
+2. **Core / Operating System** — stable OS and foundational configuration.
+3. **Project Layer** — the configuration or workload documented by this repository.
+4. **Operational Layer** — validation, maintenance, backup, and recovery procedures where applicable.
 
-### Performance
+## Boundaries
 
-The active Windows power scheme is **Ultimate Performance**.
+Project-specific architecture is documented under `docs/project/`. The root documentation defines the common model; project documents provide the detailed implementation.
 
-### Scheduling
+## Change Rule
 
-Windows Game Mode is enabled.
-
-### Capture
-
-Background Game DVR/capture is disabled through user configuration and the Windows GameDVR policy.
-
-### Storage
-
-TRIM remains enabled at the Windows storage stack. Manual `Optimize-Volume -ReTrim` is not routine maintenance.
-
-### Virtual memory
-
-Existing pagefile topology is preserved. Core Gaming does not impose one universal pagefile size because storage layouts differ.
-
-## Stability principle
-
-Performance tuning is subordinate to system stability.
-
-Avoid:
-- repeated manual SSD retrim;
-- unnecessary pagefile resizing;
-- speculative registry tweaks;
-- unnecessary GPU-driver replacement;
-- aggressive storage optimization;
-- changes to the frozen server core.
-
-## Scope boundary
-
-Core Gaming ends when the Windows gaming environment is validated. Game installation and game-specific configuration are workloads above the Core Gaming layer.
+Architectural changes should be recorded in `CHANGELOG.md` and, when significant, in a release note under `docs/releases/`.

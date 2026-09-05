@@ -1,69 +1,58 @@
-# Core Gaming
+# Windows Gaming
 
-**Version:** v1.0  
-**Status:** RELEASED / BASELINE FROZEN  
-**Scope:** Windows gaming environment across the retained ThinkPad fleet
+**Version:** `v1.1.0`  
+**Status:** STANDARDIZED BASELINE  
+**Scope:** Windows gaming-layer baseline across the retained ThinkPad fleet.
 
 ## Purpose
 
-Core Gaming defines the standardized Windows gaming baseline for the retained ThinkPad fleet. It establishes a reproducible operating-system configuration layer before game installation, benchmarking, and gameplay.
+This repository documents a defined technical baseline, configuration model, operational procedures, and validation evidence for its project scope. It follows the repository structure established by `github-repository-template` while retaining project-specific technical material where required.
 
-Core Gaming is a configuration baseline, not a game catalog.
+## Repository Principles
 
-## Fleet
-
-| Host | Windows Gaming Target | GPU | Status |
-|---|---|---|---|
-| Lenovo ThinkPad T540p | Windows 10 Gaming | NVIDIA GeForce GT 730M + Intel HD Graphics 4600 | COMPLETE |
-| Lenovo ThinkPad T540p | Windows 11 Gaming | NVIDIA GeForce GT 730M + Intel HD Graphics 4600 | COMPLETE |
-| Lenovo ThinkPad W530 | Windows 10 Gaming | NVIDIA Quadro K1000M + Intel HD Graphics 4000 | COMPLETE |
-| Lenovo ThinkPad W530 | Windows 11 Gaming | NVIDIA Quadro K1000M + Intel HD Graphics 4000 | COMPLETE |
-| Lenovo ThinkPad A475 | Windows 10 Gaming | AMD Radeon R7 Graphics | COMPLETE |
-| Lenovo ThinkPad A475 | Windows 11 Gaming | AMD Radeon R7 Graphics | COMPLETE |
-
-## Baseline policy
-
-- Game Mode: enabled.
-- Game DVR/background capture: disabled.
-- Ultimate Performance power plan: active.
-- GPU devices: PnP status OK.
-- Pagefile: retained according to the existing per-system configuration.
-- NTFS TRIM: enabled at the Windows storage stack.
-- Manual SSD TRIM/retrim is intentionally excluded from normal maintenance.
-- Temporary files and Windows Update download cache are cleaned during baseline preparation.
-- DISM component cleanup is performed during baseline preparation.
-- No unnecessary registry, pagefile, storage, or driver tuning is performed after validation.
+- **Structured:** common documentation follows a predictable layout.
+- **Technical:** documentation is explicit enough for the owner to understand and maintain the system.
+- **Reproducible:** configuration and procedures should be documented as repeatable operations.
+- **Evidence-based:** incomplete work is marked `PENDING` rather than guessed.
+- **Stable by default:** changes should be deliberate, validated, and recorded.
+- **Context-aware:** project-specific files are retained when they serve a real technical purpose.
 
 ## Lifecycle
 
-`BASELINE -> CLEANUP -> POLICY CONFIGURATION -> REBOOT -> VALIDATION -> FREEZE -> GAME INSTALLATION`
+`DISCOVERY → BASELINE → IMPLEMENTATION → VALIDATION → BACKUP → RELEASE → MAINTENANCE`
 
-Once validation passes, Core Gaming is frozen. Future work normally occurs above this layer: game installation, configuration, benchmarking, and gameplay.
-
-## Non-goals
-
-- Game installation.
-- Game-specific graphics tuning.
-- Benchmark result collection.
-- Hardware modification.
-- SSD health remediation.
-- Server configuration.
-- Daily-use application configuration.
-
-## Repository structure
+## Documentation Model
 
 ```text
-.
+windows-gaming/
 ├── README.md
+├── CHANGELOG.md
+├── VERSION
+├── LICENSE
+├── .gitignore
 ├── docs/
-│   ├── architecture.md
-│   ├── baseline.md
-│   ├── lifecycle.md
-│   └── validation.md
-├── inventory/
-│   └── windows-gaming-matrix.md
-├── policies/
-│   └── maintenance-policy.md
-└── validation/
-    └── validation-record.md
+│   ├── ARCHITECTURE.md
+│   ├── CONFIGURATION.md
+│   ├── DEVELOPMENT.md
+│   ├── releases/
+│   │   └── vv1.1.0.md
+│   └── project/
+│       └── project-specific documentation
+└── project-specific directories
 ```
+
+The `docs/project/` tree contains the repository's detailed technical material. Operational directories such as `configs/`, `scripts/`, `inventory/`, `validation/`, `policies/`, `templates/`, or `backups/` remain at the repository root when they represent actual project artifacts.
+
+## Current Baseline
+
+**`v1.1.0` — standardized repository baseline.**
+
+The previous repository content has been retained and reorganized where practical. The standardization release changes repository presentation and structure; it does not claim that previously pending technical work is complete.
+
+## Security / Publication Boundary
+
+Never commit credentials, passwords, API tokens, private keys, recovery keys, activation keys, Wi-Fi PSKs, or other secret authentication material. Redact sensitive machine identifiers when publishing raw captures.
+
+## Reference Template
+
+The common repository pattern is based on the owner's `github-repository-template`. This repository may contain additional project-specific structure where required.

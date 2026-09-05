@@ -1,14 +1,27 @@
-# OS/editor noise
-Thumbs.db
-Desktop.ini
+# OS / editor
 .DS_Store
+Thumbs.db
 *.swp
-*.tmp
+*.swo
+.vscode/
+.idea/
 
-# Local archives / generated artifacts
+# Temporary / generated files
+*.tmp
+*.temp
+*.bak
+*.log
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+
+# Archives / large backup artifacts
+*.iso
+*.img
+*.vhd
+*.vhdx
+*.qcow2
 *.zip
 *.7z
-
-# Private/local notes
-.local/
-private/
